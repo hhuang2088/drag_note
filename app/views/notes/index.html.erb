@@ -1,0 +1,7 @@
+<%= @notes.each do |note| %>
+	<li><%= note.title %></br>
+		<%= note.body %></br>
+		<%= link_to "edit", edit_note_path(note[:id]) %>
+		<%= link_to "delete", note, method: :delete, data: { confirm: "You sure?"} %>
+	</li></br>
+<% end %>
