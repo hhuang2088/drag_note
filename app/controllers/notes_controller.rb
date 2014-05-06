@@ -1,17 +1,8 @@
 class NotesController < ApplicationController
 
-  def index
-    @notes = Note.all
-  end
-  
-  def new 
-    @note = Note.new
-  end
-
   def create 
-    note = Note.new note_params 
-    note.save 
-    redirect_to note
+    @note = Note.create note_params
+    redirect_to chapter_path(note_params[:chapter_id])
   end
 
   def show
@@ -29,12 +20,14 @@ class NotesController < ApplicationController
   end
 
   def destroy 
-    Note.find(params[:id]).destroy
-    redirect_to root_path
+    note = Note.find(params[:id])
+    chapter = note.chapter 
+    note.destroy
+    redirect_to chapter 
   end
 
   private 
     def note_params 
-      params.require(:note).permit(:title, :body)
+      params.require(:note).permit(:title, :body, :chapter_id)
     end
 end

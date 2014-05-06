@@ -1,0 +1,6 @@
+<%= form_for @note do |f| %>
+  <%= f.text_field :title %></br>
+  <%= f.text_area :body %>
+  <%= f.hidden_field :chapter_id, value:@chapter.id %>
+  <%= f.submit %>
+<% end %>

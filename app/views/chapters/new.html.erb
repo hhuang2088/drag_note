@@ -1,0 +1,9 @@
+<h1>Creating a new Chapter </h1>
+
+<%= form_for @chapter do |f| %>
+	<%= f.label :title %>
+	<%= f.text_field :title %>
+	<%= f.submit %>
+<% end %>
+</br>
+<%= link_to "Home", root_path %>

@@ -1,0 +1,9 @@
+<h1>Chapters</h2>
+
+<%= @chapters.each do |f| %>
+	<li><%= f.title %>
+	<%= link_to "edit", edit_chapter_path(f[:id]) %>
+	<%= link_to "delete", f, method: :delete, data: { confirm: " You sure?"} %>
+</li></br>
+<% end %>
+

@@ -1,0 +1,11 @@
+<h2><%= @chapter.title %></h2>
+
+<% @chapter.notes.each do |note| %>
+  <li><h3><%= note.title %></h3>
+  	<%= note.body %>
+ <%= link_to "Delete", note_path(note), method: 'delete' %>
+ <% end %>
+
+ <h5>Add Note</h5>
+
+ <%= render 'note_form' %>
