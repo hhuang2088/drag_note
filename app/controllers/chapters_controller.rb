@@ -1,4 +1,5 @@
 class ChaptersController < ApplicationController
+  before_filter :authenticate_user!, except: [:show]
   
   def index
     @chapters = Chapter.all 
@@ -11,7 +12,7 @@ class ChaptersController < ApplicationController
   def create 
     chapter = Chapter.new chapter_params 
     if chapter.save 
-      redirect_to chapter 
+      redirect_to chapter
     else
       render :new
     end
@@ -20,6 +21,7 @@ class ChaptersController < ApplicationController
   def show 
     @chapter = Chapter.find(params[:id])
     @note = Note.new 
+    @search = Search.new
   end
 
   def edit
@@ -38,11 +40,21 @@ class ChaptersController < ApplicationController
   def destroy 
     Chapter.find(params[:id]).destroy
     redirect_to root_path
+
+    # chapter = Chapter.find(params[:id])
+    # user = chapter.user
+    # chapter.destroy
+    # redirect_to chapters_path
+
+    # note = Note.find(params[:id])
+    # chapter = note.chapter 
+    # note.destroy
+    # redirect_to chapter 
   end
 
   private 
   def chapter_params 
-    params.require(:chapter).permit(:title)
+    params.require(:chapter).permit(:title, :user_id)
   end
 
 end

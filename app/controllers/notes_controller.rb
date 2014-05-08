@@ -1,4 +1,6 @@
 class NotesController < ApplicationController
+  before_filter :authenticate_user!, except: [:index, :show]
+
 
   def create 
     @note = Note.create note_params
@@ -7,6 +9,10 @@ class NotesController < ApplicationController
 
   def show
     @note = Note.find(params[:id])
+
+    results = Typhoeus.get("URL")
+    variable = JSON.parse(results.body)
+
   end
 
   def edit

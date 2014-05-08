@@ -1,0 +1,5 @@
+<%= form_for @search do |f| %>
+  <%= f.text_field :query %></br>
+  <%= f.hidden_field :chapter_id, value:@chapter.id %>
+  <%= f.submit %>
+<% end %>

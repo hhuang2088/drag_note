@@ -3,9 +3,25 @@
 <% @chapter.notes.each do |note| %>
   <li><h3><%= note.title %></h3>
   	<%= note.body %>
+ <%= link_to "Edit", edit_note_path(note) %>
+ <%= link_to "Delete", note_path(note), method: 'delete' %>
+ <% end %>
+
+ <% @chapter.searches.each do |search| %>
+  <li><h3><%= search.query %></h3>
+  	<%= note.body %>
+ <%= link_to "Edit", edit_note_path(note) %>
  <%= link_to "Delete", note_path(note), method: 'delete' %>
  <% end %>
 
  <h5>Add Note</h5>
 
  <%= render 'note_form' %>
+
+ <h5>Search</h5>
+
+ <%= render 'search_form' %>
+
+</br>
+
+<%= link_to "Home", root_path %>
