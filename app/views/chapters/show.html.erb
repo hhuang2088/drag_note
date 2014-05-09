@@ -5,13 +5,13 @@
   	<%= note.body %>
  <%= link_to "Edit", edit_note_path(note) %>
  <%= link_to "Delete", note_path(note), method: 'delete' %>
+</li>
  <% end %>
 
  <% @chapter.searches.each do |search| %>
   <li><h3><%= search.query %></h3>
-  	<%= note.body %>
- <%= link_to "Edit", edit_note_path(note) %>
- <%= link_to "Delete", note_path(note), method: 'delete' %>
+ <%= link_to "Delete", search_path(search), method: 'delete' %>
+</li>
  <% end %>
 
  <h5>Add Note</h5>
@@ -21,6 +21,7 @@
  <h5>Search</h5>
 
  <%= render 'search_form' %>
+
 
 </br>
 

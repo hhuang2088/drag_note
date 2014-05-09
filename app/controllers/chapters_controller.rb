@@ -24,6 +24,9 @@ class ChaptersController < ApplicationController
     @chapter = Chapter.find(params[:id])
     @note = Note.new 
     @search = Search.new
+    # response = Typhoeus.get('http://en.wikipedia.org/w/api.php', :params => {:action => 'opensearch', :format => 'json', :search => @search.query})
+    # binding.pry
+    # @results = JSON.parse(response.body)
   end
 
   def edit

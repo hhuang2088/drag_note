@@ -10,8 +10,8 @@ class NotesController < ApplicationController
   def show
     @note = Note.find(params[:id])
 
-    results = Typhoeus.get("URL")
-    variable = JSON.parse(results.body)
+    # results = Typhoeus.get("URL")
+    # variable = JSON.parse(results.body)
 
   end
 
