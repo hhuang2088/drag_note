@@ -1,16 +1,18 @@
 class ChaptersController < ApplicationController
-  before_filter :authenticate_user!, except: [:show]
+  before_action :authenticate_user!, except: [:show]
+  # before_filter :check_chapter_owner, only: [:edit, :update, :destroy]
   
   def index
-    @chapters = Chapter.all 
+    @chapters = current_user.chapters.all 
   end
 
   def new
-    @chapter = Chapter.new
+    @chapter = current_user.chapters.new
   end
 
   def create 
-    chapter = Chapter.new chapter_params 
+    chapter = current_user.chapters.new chapter_params 
+
     if chapter.save 
       redirect_to chapter
     else
@@ -54,7 +56,7 @@ class ChaptersController < ApplicationController
 
   private 
   def chapter_params 
-    params.require(:chapter).permit(:title, :user_id)
+    params.require(:chapter).permit(:title)
   end
 
 end
