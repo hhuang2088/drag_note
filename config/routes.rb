@@ -2,9 +2,13 @@ Rails.application.routes.draw do
   devise_for :users
   root 'chapters#index'
 
-  resources :chapters, :notes, :users, :searches 
+  resources :chapters, :notes, :users, :searches do
+    get 'search', on: :collection
+  end
   
-  # get '/notes', to: 'notes#index', as: 'notes_index'
+  # get '/notes', to: 'notes
+
+  #index', as: 'notes_index'
   # get '/notes/new', to: 'notes#new', as: 'notes_new'
   # post '/notes', to: 'notes#create', as: 'notes'
   # get '/notes/:id', to: 'notes#show', as: 'note'

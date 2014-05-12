@@ -57,6 +57,13 @@ class ChaptersController < ApplicationController
     # redirect_to chapter 
   end
 
+    def search
+    @search = SimpleSearch.new SimpleSearch.get_params(params)
+    if @search.valid?
+      @chapters = @search.search_within Chapter.all, :title
+    end
+  end
+
   private 
   def chapter_params 
     params.require(:chapter).permit(:title)
