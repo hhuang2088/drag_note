@@ -1,5 +1,8 @@
 require 'spec_helper'
 
 describe Note do
-  pending "add some examples to (or delete) #{__FILE__}"
+    it 'notes can be created' do 
+    note = Note.create(title: "test")
+    note.id.should_not  eq(nil)
+  end
 end

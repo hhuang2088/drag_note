@@ -3,19 +3,18 @@ class SearchesController < ApplicationController
 
   def create 
     @search = Search.create search_params
+    request = Typhoeus.get('http://eol.org/api/search/1.0.json', :params => {q: '#{@search}', page: '1',})
+    @result = JSON.parse(request.body)["results"][0]["link"]
     redirect_to chapter_path(search_params[:chapter_id])
   end
 
   def show
     @search = Search.find(params[:id])
-    # response = Typhoeus.get('http://en.wikipedia.org/w/api.php', :params => {:action => 'opensearch', :format => 'json', :search => @search.query})
-    # binding.pry
-    # @results = JSON.parse(response.body)
-
   end
 
   def destroy
     search = Search.find(params[:id])
+    binding.pry
     chapter = search.chapter
     search.destroy
     redirect_to chapter 
@@ -23,6 +22,8 @@ class SearchesController < ApplicationController
 
   private 
   def search_params
-    params.require(:search).permit(:query, :chapter_id)
+    params.require(:search).permit(:query, :chapter_id, :url)
   end
 end
+
+#result = Typhoeus.get('http://eol.org/api/, params => {:search => })

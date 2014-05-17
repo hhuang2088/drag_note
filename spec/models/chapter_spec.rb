@@ -1,5 +1,8 @@
 require 'spec_helper'
 
 describe Chapter do
-  pending "add some examples to (or delete) #{__FILE__}"
+    it 'chapters can be created' do 
+    chapter = Chapter.create(title: "test")
+    chapter.id.should_not  eq(nil)
+  end
 end

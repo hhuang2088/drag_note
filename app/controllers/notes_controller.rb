@@ -9,10 +9,6 @@ class NotesController < ApplicationController
 
   def show
     @note = Note.find(params[:id])
-
-    # results = Typhoeus.get("URL")
-    # variable = JSON.parse(results.body)
-
   end
 
   def edit
@@ -27,6 +23,7 @@ class NotesController < ApplicationController
 
   def destroy 
     note = Note.find(params[:id])
+    binding.pry
     chapter = note.chapter 
     note.destroy
     redirect_to chapter 
