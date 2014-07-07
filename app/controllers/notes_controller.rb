@@ -23,7 +23,6 @@ class NotesController < ApplicationController
 
   def destroy 
     note = Note.find(params[:id])
-    binding.pry
     chapter = note.chapter 
     note.destroy
     redirect_to chapter 

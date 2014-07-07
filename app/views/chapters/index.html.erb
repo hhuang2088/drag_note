@@ -1,7 +1,7 @@
 <h1>Chapters</h2>
 
 <ul class="list-inline", style="list-style-type: none">
-<%= @chapters.each do |f| %>
+<% @chapters.each do |f| %>
 	<li><%= link_to f.title, chapter_path(f[:id]) %></br>
 	<%= link_to "edit", edit_chapter_path(f[:id]) %>
 	<%= link_to "delete", f, method: :delete, data: { confirm: " You sure?"} %>
@@ -12,5 +12,3 @@
 <div class="btn-default:active">
 	<%= link_to "New Chapter", new_chapter_path %>
 </div>
-
-<%= link_to "Search", new_search_path %>

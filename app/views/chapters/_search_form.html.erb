@@ -1,6 +1,6 @@
 <%= form_for @search do |f| %>
   <%= f.text_field :query %></br>
-  <%= f.hidden_field :url, value:@result %>
+  <%= f.hidden_field :url, value:@search %>
   <%= f.hidden_field :chapter_id, value:@chapter.id %>
   <%= f.submit %>
 <% end %>
